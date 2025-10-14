@@ -37,17 +37,210 @@ connectDB();
 // Routes
 app.use('/api/auth', authRoutes);
 
-// Basic route
+// UI Route for root path
 app.get('/', (req, res) => {
   const envInfo = getEnvironmentInfo();
-  res.json({
-    message: 'uGSOT Backend API is running!',
-    status: 'success',
-    timestamp: new Date().toISOString(),
-    environment: envInfo.environment,
-    apiBaseUrl: envInfo.apiBaseUrl,
-    version: '1.0.0'
-  });
+  const routes = getAllRoutes();
+  
+  const html = `
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>uGSOT Backend API</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
+            padding: 40px;
+            max-width: 800px;
+            width: 100%;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .logo {
+            font-size: 2.5rem;
+            font-weight: bold;
+            background: linear-gradient(135deg, #667eea, #764ba2);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 10px;
+        }
+        
+        .subtitle {
+            color: #666;
+            font-size: 1.1rem;
+        }
+        
+        .status {
+            display: inline-block;
+            background: #4CAF50;
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            margin: 20px 0;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+        
+        .info-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .info-card h3 {
+            color: #333;
+            margin-bottom: 10px;
+            font-size: 1.1rem;
+        }
+        
+        .info-card p {
+            color: #666;
+            font-size: 0.9rem;
+        }
+        
+        .endpoints {
+            margin: 30px 0;
+        }
+        
+        .endpoints h3 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        .endpoint {
+            background: #f8f9fa;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border-left: 4px solid #28a745;
+        }
+        
+        .endpoint-method {
+            display: inline-block;
+            background: #28a745;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 4px;
+            font-size: 0.8rem;
+            margin-right: 10px;
+        }
+        
+        .endpoint-path {
+            font-family: 'Courier New', monospace;
+            color: #333;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 30px;
+            padding-top: 20px;
+            border-top: 1px solid #eee;
+            color: #666;
+        }
+        
+        .timestamp {
+            font-size: 0.8rem;
+            color: #999;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <div class="logo">uGSOT</div>
+            <div class="subtitle">Backend API Server</div>
+            <div class="status">🟢 Online & Running</div>
+        </div>
+        
+        <div class="info-grid">
+            <div class="info-card">
+                <h3>🌍 Environment</h3>
+                <p>${envInfo.environment}</p>
+            </div>
+            <div class="info-card">
+                <h3>📦 Version</h3>
+                <p>1.0.0</p>
+            </div>
+            <div class="info-card">
+                <h3>🔗 API Base URL</h3>
+                <p>${envInfo.apiBaseUrl}</p>
+            </div>
+            <div class="info-card">
+                <h3>⚡ Status</h3>
+                <p>Production Ready</p>
+            </div>
+        </div>
+        
+        <div class="endpoints">
+            <h3>🚀 Available Endpoints</h3>
+            <div class="endpoint">
+                <span class="endpoint-method">GET</span>
+                <span class="endpoint-path">/health</span>
+                <span style="color: #666; margin-left: 10px;">- Health check</span>
+            </div>
+            <div class="endpoint">
+                <span class="endpoint-method">GET</span>
+                <span class="endpoint-path">/api/info</span>
+                <span style="color: #666; margin-left: 10px;">- API information</span>
+            </div>
+            <div class="endpoint">
+                <span class="endpoint-method">POST</span>
+                <span class="endpoint-path">/api/auth/register</span>
+                <span style="color: #666; margin-left: 10px;">- User registration</span>
+            </div>
+            <div class="endpoint">
+                <span class="endpoint-method">POST</span>
+                <span class="endpoint-path">/api/auth/login</span>
+                <span style="color: #666; margin-left: 10px;">- User login</span>
+            </div>
+            <div class="endpoint">
+                <span class="endpoint-method">GET</span>
+                <span class="endpoint-path">/api/auth/profile</span>
+                <span style="color: #666; margin-left: 10px;">- Get user profile</span>
+            </div>
+        </div>
+        
+        <div class="footer">
+            <p>Powered by Node.js, Express & MongoDB</p>
+            <p class="timestamp">Last updated: ${new Date().toLocaleString()}</p>
+        </div>
+    </div>
+</body>
+</html>
+  `;
+  
+  res.send(html);
 });
 
 // Health check route
