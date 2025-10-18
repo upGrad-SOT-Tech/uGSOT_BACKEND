@@ -35,7 +35,7 @@ const connectDB = async () => {
 connectDB();
 
 // Routes
-app.use('/api/auth', authRoutes);
+app.use('/api/v1/auth', authRoutes);
 
 // UI Route for root path
 app.get('/', (req, res) => {
@@ -193,7 +193,7 @@ app.get('/', (req, res) => {
                 <p>1.0.0</p>
             </div>
             <div class="info-card">
-                <h3>🔗 API Base URL</h3>
+                <h3>🔗 API Base URL (auto change based on environment)</h3>
                 <p>${envInfo.apiBaseUrl}</p>
             </div>
             <div class="info-card">
@@ -211,22 +211,22 @@ app.get('/', (req, res) => {
             </div>
             <div class="endpoint">
                 <span class="endpoint-method">GET</span>
-                <span class="endpoint-path">/api/info</span>
+                <span class="endpoint-path">/api/v1/info</span>
                 <span style="color: #666; margin-left: 10px;">- API information</span>
             </div>
             <div class="endpoint">
                 <span class="endpoint-method">POST</span>
-                <span class="endpoint-path">/api/auth/register</span>
+                <span class="endpoint-path">/api/v1/auth/register</span>
                 <span style="color: #666; margin-left: 10px;">- User registration</span>
             </div>
             <div class="endpoint">
                 <span class="endpoint-method">POST</span>
-                <span class="endpoint-path">/api/auth/login</span>
+                <span class="endpoint-path">/api/v1/auth/login</span>
                 <span style="color: #666; margin-left: 10px;">- User login</span>
             </div>
             <div class="endpoint">
                 <span class="endpoint-method">GET</span>
-                <span class="endpoint-path">/api/auth/profile</span>
+                <span class="endpoint-path">/api/v1/auth/profile</span>
                 <span style="color: #666; margin-left: 10px;">- Get user profile</span>
             </div>
         </div>
@@ -256,7 +256,7 @@ app.get('/health', (req, res) => {
 });
 
 // API Info route
-app.get('/api/info', (req, res) => {
+app.get('/api/v1/info', (req, res) => {
   const envInfo = getEnvironmentInfo();
   const routes = getAllRoutes();
   res.json({
@@ -300,7 +300,7 @@ app.listen(PORT, () => {
   console.log(`🔗 API Base URL: ${envInfo.apiBaseUrl}`);
   console.log(`🌐 Frontend URL: ${envInfo.baseUrl}`);
   console.log(`📊 Health Check: ${envInfo.apiBaseUrl}/health`);
-  console.log(`ℹ️  API Info: ${envInfo.apiBaseUrl}/api/info`);
+  console.log(`ℹ️  API Info: ${envInfo.apiBaseUrl}/api/v1/info`);
 });
 
 export default app;

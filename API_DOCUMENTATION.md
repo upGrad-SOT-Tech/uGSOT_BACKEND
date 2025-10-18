@@ -14,10 +14,10 @@ A Node.js backend API for user registration and authentication with email OTP ve
 
 ## API Endpoints
 
-### Authentication Routes (`/api/auth`)
+### Authentication Routes (`/api/v1/auth`)
 
 #### 1. Register User
-**POST** `/api/auth/register`
+**POST** `/api/v1/auth/register`
 
 Register a new user with the following fields:
 
@@ -50,7 +50,7 @@ Register a new user with the following fields:
 ```
 
 #### 2. Verify OTP
-**POST** `/api/auth/verify-otp`
+**POST** `/api/v1/auth/verify-otp`
 
 Verify email address with OTP:
 
@@ -82,7 +82,7 @@ Verify email address with OTP:
 ```
 
 #### 3. Resend OTP
-**POST** `/api/auth/resend-otp`
+**POST** `/api/v1/auth/resend-otp`
 
 Resend OTP to email address:
 
@@ -93,7 +93,7 @@ Resend OTP to email address:
 ```
 
 #### 4. Login
-**POST** `/api/auth/login`
+**POST** `/api/v1/auth/login`
 
 Login with email/phone and password:
 
@@ -105,7 +105,7 @@ Login with email/phone and password:
 ```
 
 #### 5. Get Profile
-**GET** `/api/auth/profile`
+**GET** `/api/v1/auth/profile`
 
 Get user profile (requires authentication):
 
@@ -115,7 +115,7 @@ Authorization: Bearer jwt_token_here
 ```
 
 #### 6. Update Profile
-**PUT** `/api/auth/profile`
+**PUT** `/api/v1/auth/profile`
 
 Update user profile (requires authentication):
 
@@ -127,7 +127,7 @@ Update user profile (requires authentication):
 ```
 
 #### 7. Logout
-**POST** `/api/auth/logout`
+**POST** `/api/v1/auth/logout`
 
 Logout user (requires authentication).
 

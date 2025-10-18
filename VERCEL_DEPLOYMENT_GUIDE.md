@@ -172,7 +172,7 @@ vercel
    curl https://ugsot-backend.vercel.app/health
    
    # Test API info
-   curl https://ugsot-backend.vercel.app/api/info
+   curl https://ugsot-backend.vercel.app/api/v1/info
    ```
 
 ### **Phase 6: Testing Production API**
@@ -181,7 +181,7 @@ vercel
 
 1. **Register User:**
    ```bash
-   curl -X POST https://ugsot-backend.vercel.app/api/auth/register \
+   curl -X POST https://ugsot-backend.vercel.app/api/v1/auth/register \
      -H "Content-Type: application/json" \
      -d '{
        "fullName": "Test User",
@@ -197,7 +197,7 @@ vercel
 
 3. **Verify OTP:**
    ```bash
-   curl -X POST https://ugsot-backend.vercel.app/api/auth/verify-otp \
+   curl -X POST https://ugsot-backend.vercel.app/api/v1/auth/verify-otp \
      -H "Content-Type: application/json" \
      -d '{
        "email": "test@example.com",
@@ -294,8 +294,8 @@ After successful deployment:
 
 - **API Base URL:** `https://ugsot-backend.vercel.app`
 - **Health Check:** `https://ugsot-backend.vercel.app/health`
-- **API Info:** `https://ugsot-backend.vercel.app/api/info`
-- **Registration:** `https://ugsot-backend.vercel.app/api/auth/register`
+- **API Info:** `https://ugsot-backend.vercel.app/api/v1/info`
+- **Registration:** `https://ugsot-backend.vercel.app/api/v1/auth/register`
 
 ## 🚀 **Success!**
 

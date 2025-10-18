@@ -35,8 +35,8 @@ const baseUrl = isProduction ? process.env.PROD_URL : process.env.LOCAL_URL;
 // All routes are generated dynamically
 const routes = {
   auth: {
-    register: `${apiBaseUrl}/api/auth/register`,
-    login: `${apiBaseUrl}/api/auth/login`,
+    register: `${apiBaseUrl}/api/v1/auth/register`,
+    login: `${apiBaseUrl}/api/v1/auth/login`,
     // ... all auth routes
   }
 };
@@ -47,16 +47,16 @@ const routes = {
 ### **System Endpoints:**
 - `GET /` - Root endpoint with environment info
 - `GET /health` - Health check with environment info
-- `GET /api/info` - Complete API information with all routes
+- `GET /api/v1/info` - Complete API information with all routes
 
 ### **Authentication Endpoints:**
-- `POST /api/auth/register` - User registration
-- `POST /api/auth/verify-otp` - Email OTP verification
-- `POST /api/auth/resend-otp` - Resend OTP
-- `POST /api/auth/login` - User login
-- `GET /api/auth/profile` - Get user profile
-- `PUT /api/auth/profile` - Update user profile
-- `POST /api/auth/logout` - User logout
+- `POST /api/v1/auth/register` - User registration
+- `POST /api/v1/auth/verify-otp` - Email OTP verification
+- `POST /api/v1/auth/resend-otp` - Resend OTP
+- `POST /api/v1/auth/login` - User login
+- `GET /api/v1/auth/profile` - Get user profile
+- `PUT /api/v1/auth/profile` - Update user profile
+- `POST /api/v1/auth/logout` - User logout
 
 ## 🌍 **Environment Configuration:**
 
@@ -78,7 +78,7 @@ PROD_URL=https://your-vercel-app.vercel.app
 
 ### **1. Check Environment Info:**
 ```bash
-GET http://localhost:5000/api/info
+GET http://localhost:5000/api/v1/info
 ```
 
 **Response:**
@@ -95,8 +95,8 @@ GET http://localhost:5000/api/info
     "routes": {
       "api": {
         "auth": {
-          "register": "http://localhost:5000/api/auth/register",
-          "login": "http://localhost:5000/api/auth/login"
+          "register": "http://localhost:5000/api/v1/auth/register",
+          "login": "http://localhost:5000/api/v1/auth/login"
         }
       },
       "frontend": {
@@ -145,7 +145,7 @@ When you start the server, you'll see:
 🔗 API Base URL: http://localhost:5000
 🌐 Frontend URL: http://localhost:3000
 📊 Health Check: http://localhost:5000/health
-ℹ️  API Info: http://localhost:5000/api/info
+ℹ️  API Info: http://localhost:5000/api/v1/info
 ```
 
 ## 🚀 **Vercel Deployment:**
@@ -166,7 +166,7 @@ vercel --prod
 
 ### **3. Test Production:**
 ```bash
-GET https://your-vercel-app.vercel.app/api/info
+GET https://your-vercel-app.vercel.app/api/v1/info
 ```
 
 ## 🎉 **Result:**

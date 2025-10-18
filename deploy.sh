@@ -30,7 +30,7 @@ vercel --prod
 echo "✅ Deployment complete!"
 echo "🌐 Your API is now live at: https://ugsot-backend.vercel.app"
 echo "📊 Health check: https://ugsot-backend.vercel.app/health"
-echo "ℹ️  API info: https://ugsot-backend.vercel.app/api/info"
+echo "ℹ️  API info: https://ugsot-backend.vercel.app/api/v1/info"
 
 echo ""
 echo "🔧 Don't forget to set environment variables in Vercel dashboard:"

@@ -9,17 +9,17 @@ export const getApiRoutes = () => {
   
   return {
     auth: {
-      register: `${apiBaseUrl}/api/auth/register`,
-      verifyOTP: `${apiBaseUrl}/api/auth/verify-otp`,
-      resendOTP: `${apiBaseUrl}/api/auth/resend-otp`,
-      login: `${apiBaseUrl}/api/auth/login`,
-      profile: `${apiBaseUrl}/api/auth/profile`,
-      updateProfile: `${apiBaseUrl}/api/auth/profile`,
-      logout: `${apiBaseUrl}/api/auth/logout`
+      register: `${apiBaseUrl}/api/v1/auth/register`,
+      verifyOTP: `${apiBaseUrl}/api/v1/auth/verify-otp`,
+      resendOTP: `${apiBaseUrl}/api/v1/auth/resend-otp`,
+      login: `${apiBaseUrl}/api/v1/auth/login`,
+      profile: `${apiBaseUrl}/api/v1/auth/profile`,
+      updateProfile: `${apiBaseUrl}/api/v1/auth/profile`,
+      logout: `${apiBaseUrl}/api/v1/auth/logout`
     },
     system: {
       health: `${apiBaseUrl}/health`,
-      info: `${apiBaseUrl}/api/info`,
+      info: `${apiBaseUrl}/api/v1/info`,
       root: `${apiBaseUrl}/`
     }
   };
